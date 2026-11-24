@@ -17,7 +17,7 @@ License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Comm
 </div><br>
 
 
-STM32 schematic: [Resources/G5Fly-schematics-STM32.pdf](Resources/schematics/G5FLY_STM_schematics.pdf)
+STM32 schematic: [Resources/schematics/G5FLY_STM_schematics.pdf](Resources/schematics/G5FLY_STM_schematics.pdf)
 
 <p align="center">
   <img src="Resources/marketing/flyer_g5fly-stm.jpg" alt="3D view of the G5Fly STM32 board" width="100%">
@@ -71,7 +71,6 @@ For a production build without hardware changes:
 - Use the current KiCad project and generated manufacturing files from the hardware folder: [hardware/versions/v1/kicad](hardware/versions/v1/kicad/)
 - Provide the manufacturer with the schematic, PCB files, BOM, and CPL.
 - Verify antenna connector type, jumper configuration, and power options before assembly.
-- Reference schematic: [Resources/G5Fly-schematics-STM32.pdf](Resources/G5Fly-schematics-STM32.pdf)
 
 #### JLCPCB manufacturing requirements
 
@@ -79,7 +78,7 @@ For a production build without hardware changes:
 - Manufacture the board as a 6-layer PCB.
 - `PCB Requirement: User.1 layer should be used as the V-cut guide layer.`
 - Refer to the PCB design rules in [hardware/common/design_rules/design-rules.md](hardware/common/design_rules/design-rules.md) when preparing or reviewing the PCB for production.
-- Use the [G5Fly_STM32_Rev2_JLCPCB production archive](hardware/versions/v1/kicad/production/G5Fly_STM32_Rev2_JLCPCB.zip) for the files prepared specifically for manufacturing at JLCPCB.
+- Use the [G5Fly_STM32_Rev2_JLCPCB production archive](hardware/versions/v1/kicad/production/G5Fly_STM32_v1_JLCPCB.zip) for the files prepared specifically for manufacturing at JLCPCB.
 
 ### Power and antenna
 - Keep GNSS antenna cables away from noisy power traces where possible.

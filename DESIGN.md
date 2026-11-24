@@ -8,7 +8,7 @@ Use this guide to locate the important hardware references, modify the KiCad pro
 
 ## 2. Project overview
 
-G5Fly is a compact GNSS board built around the Septentrio Mosaic-G5 and an STM32G473RCT6. The STM32 runs the AP_Periph firmware configuration documented in [firmware/hwdef.md](firmware/hwdef.md) and communicates with the flight controller over DroneCAN.
+G5Fly is a compact GNSS board built around the Septentrio Mosaic-g5 and an STM32G473RCT6. The STM runs the AP_Periph firmware configuration documented in [firmware/hwdef.md](firmware/hwdef.md) and communicates with the flight controller over DroneCAN.
 
 
 
@@ -20,20 +20,20 @@ Start with these locations:
 - [hardware/versions/v1/kicad/production](hardware/versions/v1/kicad/production): available production exports
 - [hardware/common/libraries](hardware/common/libraries): project symbols, footprints, and 3D models
 - [hardware/common/design_rules/design-rules.md](hardware/common/design_rules/design-rules.md): track, via, and clearance values
-- [Resources/G5Fly-schematics-STM32.pdf](Resources/G5Fly-schematics-STM32.pdf): STM32 schematic PDF
+- [Resources/schematics/G5FLY_STM_schematics.pdf](Resources/schematics/G5FLY_STM_schematics.pdf): STM schematic PDF
 - [firmware/DroneCAN-Setup.md](firmware/DroneCAN-Setup.md): AP_Periph and DroneCAN bring-up guide
 - [VERSIONING.md](VERSIONING.md): changes between hardware revisions
 
 ## 4. Hardware architecture
-![G5Fly STM32 architecture](Resources/G5Fly_STM32_REV-2.drawio.png)
+![G5Fly STM architecture](Resources/schematics/G5Fly_STM32_drawio.png)
 
-*STM32G473 architecture showing the Mosaic-G5, GNSS antennas, CAN transceiver, external interfaces, SWD/JTAG access, and the magnetometer. The faded DF40 block represents an optional extension and is not part of the STM32 base configuration documented in this branch.*
+*STM32G473 architecture showing the Mosaic-g5, GNSS antennas, CAN transceiver, external interfaces, SWD/JTAG access, and the magnetometer. The DF40 mezzanine connector is used to stack the board on the NXP MR-MCXN-T1 Hub.*
 
-The STM32 schematic is the authoritative detailed reference for this branch: [G5Fly-schematics-STM32.pdf](Resources/G5Fly-schematics-STM32.pdf).
+The STM schematic is the authoritative detailed reference for this repository: [G5FLY_STM_schematics.pdf](Resources/schematics/G5FLY_STM_schematics.pdf).
 
 ### 4.1 Main functional blocks
 
-The following references are taken from the [G5Fly STM32 Rev2 BOM](hardware/versions/v1/kicad/production/G5Fly_STM32_Rev2_bom.csv):
+The following references are taken from the [G5Fly STM v1 BOM](hardware/versions/v1/kicad/production/G5Fly_STM_v1_bom.csv):
 
 | Function | Reference | Component / value | Role |
 | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ The following references are taken from the [G5Fly STM32 Rev2 BOM](hardware/vers
 
 ### 4.2 Interfaces and configuration
 
-The following interfaces and connector references are taken from the STM32 schematic and the [G5Fly STM32 Rev2 BOM](hardware/versions/v1/kicad/production/G5Fly_STM32_Rev2_bom.csv):
+The following interfaces and connector references are taken from the STM schematic and the [G5Fly STM v1 BOM](hardware/versions/v1/kicad/production/G5Fly_STM_v1_bom.csv):
 
 | Interface or function | Reference | Firmware mapping / component | Purpose |
 | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ The following interfaces and connector references are taken from the STM32 schem
 | USB | `J3` | USB4105-GF-A | USB 2.0 communication and board power |
 | GNSS antennas | `J10`, `J11` | MMCX-J-P-H-RA-TH1 | Main and auxiliary RF connections |
 | Mezzanine expansion | `J8` | DF40TC(2.5)-50DS-0.4V(51) | Optional board-to-board connection; see the [DF40 connector image](Resources/Connector-DF40.png) |
-| Reset | `SW1` | EVQP7J01P | Hardware reset input |
+| Reset | `SW3` | EVQP7J01P | Hardware reset input |
 
 ## 5. Modification workflow
 
@@ -69,11 +69,11 @@ Copy [hardware/versions/v1](hardware/versions/v1) to a new revision directory be
 
 ### Step 2: Change the schematic first
 
-Open `hardware/versions/v1/kicad/G5FLY.kicad_pro` and modify `G5FLY.kicad_sch` before editing the PCB. For every changed component, check its pin mapping, footprint, value, and datasheet. Pay particular attention to the GNSS RF path, STM32 pin assignment, UART connections, CAN transceiver, SWD header, and magnetometer interface.
+Open `hardware/versions/v1/kicad/G5FLY.kicad_pro` and modify `G5FLY.kicad_sch` before editing the PCB. For every changed component, check its pin mapping, footprint, value, and datasheet. Pay particular attention to the GNSS RF path, STM pin assignment, UART connections, CAN transceiver, SWD header, and magnetometer interface.
 
 ### Step 3: Update and review the PCB
 
-Update the PCB from the schematic, then review the board outline, connector orientation, antenna connectors, magnetometer orientation, copper clearances, and power paths. Do not replace project-library parts with global KiCad libraries; follow [Guidline.md](Guidline.md).
+Update the PCB from the schematic, then review the board outline, connector orientation, antenna connectors, magnetometer orientation, copper clearances, and power paths. Follow the library rules in [GUIDELINES.md](GUIDELINES.md).
 
 ### Step 4: Run checks before export
 
@@ -102,16 +102,14 @@ Before sending the board for manufacturing, prepare:
 
 - keep the antenna path short and direct,
 - keep switching and high-speed digital traces away from the GNSS RF path,
-- keep the antenna path short and direct,
-- keep switching and high-speed digital traces away from the GNSS RF path,
-- verify antenna power and connector wiring directly against the STM32 schematic and the antenna datasheet.
+- verify antenna power and connector wiring directly against the STM schematic and the antenna datasheet.
 
 The antenna supply is selected with `JP1`. Solder only the bridge required by the antenna specification:
 
 <table>
 	<tr>
-		<td align="center"><img src="Resources/Vant-3V3.png" alt="JP1 configured for 3.3 V antenna power" width="300"><br><strong>3.3 V antenna</strong><br>Connect `VANT` to `+3.3V_RF`.</td>
-		<td align="center"><img src="Resources/Vant-5V.png" alt="JP1 configured for 5 V antenna power" width="300"><br><strong>5 V antenna</strong><br>Connect `VANT` to `+5V`.</td>
+		<td align="center"><img src="Resources/board/Vant-3V3.png" alt="JP1 configured for 3.3 V antenna power" width="300"><br><strong>3.3 V antenna</strong><br>Connect `VANT` to `+3.3V_RF`.</td>
+		<td align="center"><img src="Resources/board/Vant-5V.png" alt="JP1 configured for 5 V antenna power" width="300"><br><strong>5 V antenna</strong><br>Connect `VANT` to `+5V`.</td>
 	</tr>
 </table>
 
@@ -124,8 +122,8 @@ The antenna supply is selected with `JP1`. Solder only the bridge required by th
 
 ### 6.3 Mechanical integration
 
-- preserve the 30.5 x 30.5 mm board outline unless creating a new derivative,
-- confirm connector clearances from the STM32 schematic,
+- preserve the board outline and the 30.5 x 30.5 mm / 30.5 x 40 mm mounting patterns unless creating a new derivative,
+- confirm connector clearances from the STM schematic,
 - keep the magnetometer clear of ferromagnetic parts and high-current paths,
 - check connector access against the intended enclosure or frame.
 
@@ -135,10 +133,10 @@ Before sending a revision to production:
 
 - confirm the revision identifier and update [VERSIONING.md](VERSIONING.md),
 - run schematic ERC and PCB DRC,
-- verify that every schematic component has a project-library symbol and footprint,
+- every component follows the library rules in [GUIDELINES.md](GUIDELINES.md),
 - verify that all 3D models use relative paths,
 - compare the BOM and designator list with the final schematic and PCB,
-- inspect the connectors, SWD access, CAN interface, GNSS interface, and antenna connections against the STM32 schematic,
+- inspect the connectors, SWD access, CAN interface, GNSS interface, and antenna connections against the STM schematic,
 - verify antenna power selection and connector orientation,
 - generate Gerbers, drill files, Fab BOM, and CPL with the Fabrication Toolkit,
 - open the generated files or use the manufacturer preview before ordering,

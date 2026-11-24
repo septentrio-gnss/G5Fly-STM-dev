@@ -1,10 +1,6 @@
-***
-
 # STM32 Project Guidelines
 
-This branch contains the STM32G473 hardware project and AP_Periph firmware configuration. Use the STM32 schematic and [firmware/hwdef.md](firmware/hwdef.md) as the references for pin assignments and enabled peripherals.
-
-## Library Management
+This repository contains the G5Fly STM32G473 hardware project and AP_Periph firmware configuration. Use the STM32 schematic and [firmware/hwdef.md](firmware/hwdef.md) as the references for pin assignments and enabled peripherals.
 
 ## Overview
 
@@ -18,7 +14,7 @@ hardware/common/libraries/
     └── G5FLY.pretty/
 ```
 
-All symbols and footprints used in the project must be defined in these libraries.  
+All symbols and footprints used in the project must be defined in these libraries.
 External or global KiCad libraries must not be used.
 
 ***
@@ -131,7 +127,6 @@ Use the project footprint library for custom footprints. Verify any standard KiC
 
 The following rules apply to all components:
 
-* Do not use global KiCad libraries (e.g., Device, Connector)
 * Do not use absolute file paths
 * Do not reference external plugin libraries directly
 * Always copy components into the project libraries before use
@@ -146,18 +141,23 @@ Each hardware revision is stored independently:
 
 ```
 hardware/versions/
-├── v1/
-├── v2/
-└── v3/
+├── v1/kicad/production
+└── .....
 ```
 
-Each version contains:
+Each hardware version contains:
 
-* KiCad project files
-* Fabrication outputs
-* Assembly notes
-* Visual outputs
+**Required**
+- `kicad/`: KiCad project files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`)
+- `kicad/production/`: files generated with the Fabrication Toolkit
+  (Gerber and drill archive, BOM, positions/CPL, designators)
 
+**Optional**
+- 3D model (STEP), board renders
+- Assembly notes, when specific steps are required
+
+Fabrication files must be regenerated from the KiCad project before tagging a release.
+Components intentionally not assembled must have the DNP attribute in the schematic.
 ***
 
 ## Versioning Policy
@@ -215,21 +215,6 @@ git checkout main
 git merge dev
 git tag v2.0
 ```
-
-***
-
-## Fabrication Outputs
-
-Each version must include complete manufacturing data:
-
-```
-fabrication/
-├── gerbers/
-├── bom/
-├── pick_place/
-```
-
-This ensures that any version can be reproduced without ambiguity.
 
 ***
 
