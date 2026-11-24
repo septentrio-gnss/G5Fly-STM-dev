@@ -1,0 +1,48 @@
+# ===== KiCad =====
+# Backups and autosave
+*-backups/
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.kicad_sch-bak
+_autosave-*
+\#auto_saved_files\#
+
+# Lock files (file opened in KiCad)
+*.lck
+~*.lck
+
+# Local caches and user settings
+fp-info-cache
+*.kicad_prl
+
+# Temporary exports outside production/
+*.gbr.tmp
+*-drl_map.*
+
+# ===== Order archives =====
+# JLCPCB order packages (contain account information)
+*_JLCPCB.zip
+*_Y4[0-9].zip
+
+# ===== Firmware =====
+build/
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+
+# ===== Python / tooling =====
+__pycache__/
+*.pyc
+.venv/
+
+# ===== OS / editors =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
