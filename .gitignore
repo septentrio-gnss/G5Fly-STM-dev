@@ -1,6 +1,7 @@
 # ===== KiCad =====
 # Backups and autosave
 *-backups/
+*.history*/
 *.bak
 *.bck
 *.kicad_pcb-bak
