@@ -20,16 +20,16 @@ Start with these locations:
 - [hardware/versions/v1/kicad/production](hardware/versions/v1/kicad/production): available production exports
 - [hardware/common/libraries](hardware/common/libraries): project symbols, footprints, and 3D models
 - [hardware/common/design_rules/design-rules.md](hardware/common/design_rules/design-rules.md): track, via, and clearance values
-- [Resources/schematics/G5FLY_STM_schematics.pdf](Resources/schematics/G5FLY_STM_schematics.pdf): STM schematic PDF
+- [Resources/schematics/G5FLY_STM_schematics.pdf](resources/schematics/G5FLY_STM_schematics.pdf): STM schematic PDF
 - [firmware/DroneCAN-Setup.md](firmware/DroneCAN-Setup.md): AP_Periph and DroneCAN bring-up guide
 - [VERSIONING.md](VERSIONING.md): changes between hardware revisions
 
 ## 4. Hardware architecture
-![G5Fly STM architecture](Resources/schematics/G5Fly_STM32_drawio.png)
+![G5Fly STM architecture](resources/schematics/G5Fly_STM32_drawio.png)
 
 *STM32G473 architecture showing the Mosaic-g5, GNSS antennas, CAN transceiver, external interfaces, SWD/JTAG access, and the magnetometer. The DF40 mezzanine connector is used to stack the board on the NXP MR-MCXN-T1 Hub.*
 
-The STM schematic is the authoritative detailed reference for this repository: [G5FLY_STM_schematics.pdf](Resources/schematics/G5FLY_STM_schematics.pdf).
+The STM schematic is the authoritative detailed reference for this repository: [G5FLY_STM_schematics.pdf](resources/schematics/G5FLY_STM_schematics.pdf).
 
 ### 4.1 Main functional blocks
 
@@ -108,8 +108,8 @@ The antenna supply is selected with `JP1`. Solder only the bridge required by th
 
 <table>
 	<tr>
-		<td align="center"><img src="Resources/board/Vant-3V3.png" alt="JP1 configured for 3.3 V antenna power" width="300"><br><strong>3.3 V antenna</strong><br>Connect `VANT` to `+3.3V_RF`.</td>
-		<td align="center"><img src="Resources/board/Vant-5V.png" alt="JP1 configured for 5 V antenna power" width="300"><br><strong>5 V antenna</strong><br>Connect `VANT` to `+5V`.</td>
+		<td align="center"><img src="resources/board/Vant-3V3.png" alt="JP1 configured for 3.3 V antenna power" width="300"><br><strong>3.3 V antenna</strong><br>Connect `VANT` to `+3.3V_RF`.</td>
+		<td align="center"><img src="resources/board/Vant-5V.png" alt="JP1 configured for 5 V antenna power" width="300"><br><strong>5 V antenna</strong><br>Connect `VANT` to `+5V`.</td>
 	</tr>
 </table>
 

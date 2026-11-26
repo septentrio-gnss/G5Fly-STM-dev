@@ -3,7 +3,7 @@
 The G5Fly STM runs **ArduPilot AP_Periph**. It reads the Septentrio mosaic-G5 over UART (SBF protocol) and the on-board magnetometer, and publishes both on the CAN bus as a **DroneCAN GNSS + compass node** for flight controllers.
 
 <p align="center">
-  <img src="../Resources/schematics/G5Fly_STM32_drawio.png" alt="schematics" width="60%">
+  <img src="../resources/schematics/G5Fly_STM32_drawio.png" alt="schematics" width="60%">
 </p>
 
 | | |
