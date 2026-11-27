@@ -134,7 +134,11 @@ G5Fly STM is designed for FPV drones first, but it also works with the NXP MR-MC
   </tr>
 </table>
 
-See the [NXP integration guide (hardware and firmware)](resources/mr-mcxn-t1/NXP%20integration%20HW-FW.pdf) for details.
+The DF40 connector carries the GNSS UART, the PPS and Event A signals, and the 5 V supply from the hub.
+
+To get started on the hub, see the [G5Fly NXP repository](https://github.com/septentrio-gnss/G5Fly-NXP). It provides a Zephyr test application for the MR-MCXN-T1 that reads the GNSS position over NMEA, measures the PPS, and sends Event A pulses.
+
+For an overview of the hardware and software integration, see the [MR-MCXN-T1 integration slides](resources/mr-mcxn-t1/NXP%20integration%20HW-FW.pdf).
 
 ## Production and manufacturing
 
