@@ -58,7 +58,7 @@ The following interfaces and connector references are taken from the STM schemat
 | External I2C | - | `I2C3`, `PA8` SCL, `PC9` SDA | External sensor or expansion interface |
 | USB | `J3` | USB4105-GF-A | USB 2.0 communication and board power |
 | GNSS antennas | `J10`, `J11` | MMCX-J-P-H-RA-TH1 | Main and auxiliary RF connections |
-| Mezzanine expansion | `J8` | DF40TC(2.5)-50DS-0.4V(51) | Optional board-to-board connection; see the [DF40 connector image](Resources/Connector-DF40.png) |
+| Mezzanine expansion | `J8` | DF40TC(2.5)-50DS-0.4V(51) | Optional board-to-board connection; see the [DF40 connector image](resources/mr-mcxn-t1/Connector-DF40.png) |
 | Reset | `SW3` | EVQP7J01P | Hardware reset input |
 
 ## 5. Modification workflow
